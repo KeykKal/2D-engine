@@ -1,11 +1,10 @@
 package gui;
 
 import imgui.*;
-import imgui.callback.ImStrConsumer;
-import imgui.callback.ImStrSupplier;
+import imgui.callbacks.ImStrConsumer;
+import imgui.callbacks.ImStrSupplier;
 import imgui.flag.*;
 import imgui.gl3.ImGuiImplGl3;
-import imgui.type.ImBoolean;
 import inputListener.KeyListener;
 import inputListener.MouseListener;
 import scene.Scene;
@@ -251,11 +250,11 @@ public class ImGuiLayer {
     	windowFlags |= ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoCollapse 
     			| ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove 
     			| ImGuiWindowFlags.NoBringToFrontOnFocus | ImGuiWindowFlags.NoNavFocus;
-    	ImGui.begin("Dockspace Demo", new ImBoolean(true), windowFlags);
+    	ImGui.begin("Dockspace Demo", new ImBool(true), windowFlags);
     	ImGui.popStyleVar(2);
     	
     	//Dockspace 
-    	ImGui.dockSpace(ImGui.getID("Dockspacen"));
+    	ImGui.dockSpace((int) ImGui.getID("Dockspacen"));
     	
     }
 }

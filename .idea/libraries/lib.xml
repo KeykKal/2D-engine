@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/imgui-binding-1.77-0.17.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.6-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/lwjgl3-1.76-0.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/joml-1.10.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/binding-1.76-0.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/junit-4.13.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/imgui-lwjgl3-1.77-0.17.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/imgui-app-1.82.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/joml-1.10.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.8.6-sources.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
