@@ -1,7 +1,7 @@
 package renderer;
 
-import static org.lwjgl.opengl.GL30.*;
 import shader.Texture;
+import static org.lwjgl.opengl.GL30.*;
 
 public class Framebuffer {
     private int fboID = 0;

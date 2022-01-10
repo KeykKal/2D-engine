@@ -35,7 +35,7 @@ public abstract class Scene {
 
     }
 
-    public void Start() {
+    public void start() {
     	for (GameObject g : gameObjects) {
 			g.start();
 			this.renderer.add(g);
@@ -99,6 +99,8 @@ public abstract class Scene {
 
         String inFile = "";
         try {
+            if(!Files.exists(Paths.get("level.cds")))
+                Files.createFile(Paths.get("level.cds"));
             inFile = new String(Files.readAllBytes(Paths.get("level.cds")));
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,12 +1,11 @@
 package engine;
 
-import org.lwjgl.Version;
-import org.lwjgl.glfw.GLFWErrorCallback;
-import org.lwjgl.opengl.GL;
-
 import gui.ImGuiLayer;
 import inputListener.KeyListener;
 import inputListener.MouseListener;
+import org.lwjgl.Version;
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.opengl.GL;
 import renderer.DebugDraw;
 import renderer.Framebuffer;
 import scene.*;
@@ -20,9 +19,9 @@ public class Window {
     private int width, height;
     private String title;
     private long glfwWindow;
-    private ImGuiLayer imGuiLayer;
+    private ImGuiLayer imguiLayer;
     private Framebuffer framebuffer;
-    
+
     public float r, g, b, a;
     private boolean fadeToBlack = false;
 
@@ -31,21 +30,19 @@ public class Window {
     private static Scene currentScene;
 
     private Window() {
-        this.width = 800;
-        this.height = 800;
-        this.title = "2D Engine";
-        r = 0.15f;
-        b = 0.1f;
-        g = 0.1f;
+        this.width = 2560;
+        this.height = 1440;
+        this.title = "Mario";
+        r = 1;
+        b = 1;
+        g = 1;
         a = 1;
     }
 
-    //TODO: Change Later
     public static void changeScene(int newScene) {
         switch (newScene) {
             case 0:
                 currentScene = new LevelEditorScene();
-
                 break;
             case 1:
                 currentScene = new LevelScene();
@@ -54,13 +51,11 @@ public class Window {
                 assert false : "Unknown scene '" + newScene + "'";
                 break;
         }
-        
+
         currentScene.load();
         currentScene.init();
-        currentScene.Start();
-        
+        currentScene.start();
     }
-
 
     public static Window get() {
         if (Window.window == null) {
@@ -71,12 +66,12 @@ public class Window {
     }
 
     public static Scene getScene() {
-    	return get().currentScene; //TODO: CLEAN UP THIS MESS
+        return get().currentScene;
     }
-    
+
     public void run() {
         System.out.println("Hello LWJGL " + Version.getVersion() + "!");
-        
+
         init();
         loop();
 
@@ -136,12 +131,12 @@ public class Window {
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-        this.imGuiLayer = new ImGuiLayer(glfwWindow);
-        this.imGuiLayer.initImGui();
-        
-        this.framebuffer = new Framebuffer(1600, 900);
-        glViewport(0, 0, 1600, 900);
-        
+        this.imguiLayer = new ImGuiLayer(glfwWindow);
+        this.imguiLayer.initImGui();
+
+        this.framebuffer = new Framebuffer(3840, 2160);
+        glViewport(0, 0, 3840, 2160);
+
         Window.changeScene(0);
     }
 
@@ -155,18 +150,18 @@ public class Window {
             glfwPollEvents();
 
             DebugDraw.beginFrame();
-            
+
             this.framebuffer.bind();
             glClearColor(r, g, b, a);
             glClear(GL_COLOR_BUFFER_BIT);
 
             if (dt >= 0) {
-            	DebugDraw.draw();
+                DebugDraw.draw();
                 currentScene.update(dt);
             }
             this.framebuffer.unbind();
-            	
-            this.imGuiLayer.update(dt, currentScene);
+
+            this.imguiLayer.update(dt, currentScene);
             glfwSwapBuffers(glfwWindow);
 
             endTime = (float)glfwGetTime();
@@ -176,37 +171,28 @@ public class Window {
 
         currentScene.saveExit();
     }
-    
-    public void changeTitel(String newTitle) {
-    	glfwSetWindowTitle(glfwWindow, newTitle);
-    }
-    
-    public String getTitle() {
-    	return this.title;
-    }
-    
-    public static float getWidth() {
-    	return get().width;
-    }
-    
-    public static float getHeight() {
-    	return get().height;
+
+    public static int getWidth() {
+        return get().width;
     }
 
-	public static void setWidth(int width) {
-		get().width = width;
-	}
+    public static int getHeight() {
+        return get().height;
+    }
 
-	public static void setHeight(int height) {
-		get().height = height;
-	}
+    public static void setWidth(int newWidth) {
+        get().width = newWidth;
+    }
 
-	public static Framebuffer getFrameBuffer() {
-		return get().framebuffer;
-	}
-    
-	public static float getTargetAspectRatio() {
-		return 16f / 9f;
-	}
-    
+    public static void setHeight(int newHeight) {
+        get().height = newHeight;
+    }
+
+    public static Framebuffer getFramebuffer() {
+        return get().framebuffer;
+    }
+
+    public static float getTargetAspectRatio() {
+        return 16.0f / 9.0f;
+    }
 }

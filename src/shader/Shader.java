@@ -21,9 +21,8 @@ import static org.lwjgl.opengl.GL20.glGetShaderInfoLog;
 public class Shader {
 
     private int shaderProgramID;
-
     private boolean beingUsed = false;
-    
+
     private String vertexSource;
     private String fragmentSource;
     private String filepath;
@@ -118,17 +117,18 @@ public class Shader {
     }
 
     public void use() {
-    	if(!beingUsed) {
-    		// Bind shader program    		
-    		glUseProgram(shaderProgramID);
-    		beingUsed = true;
-    	}
+        if (!beingUsed) {
+            // Bind shader program
+            glUseProgram(shaderProgramID);
+            beingUsed = true;
+        }
     }
 
     public void detach() {
         glUseProgram(0);
         beingUsed = false;
     }
+
 
     
     //Upload matrices 

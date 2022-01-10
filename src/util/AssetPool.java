@@ -38,7 +38,7 @@ public class AssetPool {
 	 * @param textureName: the name of the texture + the extension (.png/.jpg)
 	 * @return returns the Texture inside of the res/textures folder
 	 */
-	public static Texture getTexturebyName(String textureName) {
+	public static Texture getTextureByName(String textureName) {
 		File file = new File("res/textures/"+ textureName);
 		if(AssetPool.textures.containsKey(file.getAbsolutePath())) {
 			return AssetPool.textures.get(file.getAbsolutePath());
